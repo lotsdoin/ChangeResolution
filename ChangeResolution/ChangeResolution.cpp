@@ -2,7 +2,7 @@
 //
 #include <windows.h>
 #include <stdio.h>
-
+#pragma comment(linker,"/subsystem:\"windows\"/entry:\"mainCRTStartup\"")
 // Function prototypes
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 void change_resolution(int width, int height);
@@ -11,6 +11,12 @@ void change_resolution(int width, int height);
 #define BUTTON_4K 1
 #define BUTTON_2K 2
 #define BUTTON_1080P 3
+void HideWindow(){
+    HWND  hwnd = GetForegroundWindow();
+    if (hwnd){
+        ShowWindow(hwnd,SW_HIDE);
+    }
+}
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdshow) {
     WNDCLASS wc = { 0 };
@@ -24,6 +30,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdsho
     if (!RegisterClass(&wc)) {
         return -1;
     }
+    HideWindow();
     // 获取屏幕分辨率信息和标题栏高度信息
     int screenHeight = GetSystemMetrics(SM_CYSCREEN);
     int screenWidth = GetSystemMetrics(SM_CXSCREEN);
