@@ -116,10 +116,10 @@ void change_resolution(int width, int height) {
 
     // Change the display settings
     LONG result = ChangeDisplaySettings(&dm, 0);
-    if (result != DISP_CHANGE_SUCCESSFUL) {
-        MessageBox(NULL, TEXT("Failed to change resolution"), TEXT("Error"), MB_OK | MB_ICONERROR);
-    }
-    else {
-        MessageBox(NULL, TEXT("Successfully changed resolution"), TEXT("Success"), MB_OK | MB_ICONINFORMATION);
-    }
+//    if (result != DISP_CHANGE_SUCCESSFUL) {
+//        MessageBox(NULL, TEXT("Failed to change resolution"), TEXT("Error"), MB_OK | MB_ICONERROR);
+//    }
+//    else {
+//        MessageBox(NULL, TEXT("Successfully changed resolution"), TEXT("Success"), MB_OK | MB_ICONINFORMATION);
+//    }
 }
