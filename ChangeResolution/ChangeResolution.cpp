@@ -24,11 +24,16 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdsho
     if (!RegisterClass(&wc)) {
         return -1;
     }
-
+    // 获取屏幕分辨率信息和标题栏高度信息
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int titleBarHeight = GetSystemMetrics(SM_CYSIZE);
     HWND hwnd = CreateWindow("ResolutionSwitcher", "Resolution Switcher",
-        WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-        CW_USEDEFAULT, CW_USEDEFAULT, 280, 200,
-        NULL, NULL, hInst, NULL);
+                             WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+                             (screenWidth - 280) / 2,  // 设置窗口 X 坐标为居中
+                             (screenHeight - 200 - titleBarHeight) / 2,  // 设置窗口 Y 坐标为居中
+                             280, 200,
+                             NULL, NULL, hInst, NULL);
 
     if (!hwnd) {
         return -1;
